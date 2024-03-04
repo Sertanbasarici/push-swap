@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:39:22 by sebasari          #+#    #+#             */
-/*   Updated: 2024/02/17 19:04:54 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:53:43 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	del(void * content)
 	free(content);
 }
 
-void	ft_push(t_list **head, void * data)
+void	ft_push(t_list **head, int data)
 {
 	t_list *new;
 	new = (t_list *)malloc(sizeof(t_list));
 	if (!head)
 		return ;
-	ft_lstadd_back(head, new);
-	new -> content = data;
+	ft_lstadd_front(head, new);
+	new -> content = (void *)data;
 }
 
 int	ft_pop(t_list **head)
@@ -39,3 +39,15 @@ int	ft_pop(t_list **head)
 	return (data);
 }
 
+void	ft_converter(t_list **a, char **ch)
+{
+	int	i;
+	int	num;
+
+	i = 0;
+	while (ch[i] != NULL)
+	{
+		num = ft_atoi(ch[i]);
+		ft_push(a, num);
+	}
+}

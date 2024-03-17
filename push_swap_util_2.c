@@ -12,24 +12,58 @@
 
 #include "push_swap.h"
 
-int main(int argn, char **argv)
+int	ft_min(t_list *node)
 {
-	t_list	*a;
+	int	min;
 
-	if (argn == 1)
-		return (0);
-	a = ft_list_init(argn, argv);
-	if (argn > 2)
+	min = *(int *)node -> content;
+	while (node)
 	{
-		ft_converter_t2(&a ,argv);
+		if (min > *(int *)node->content)
+			min = *(int *)node->content;
+		node = node->next;	
 	}
-	else
+	return (min);
+}
+
+int	ft_max(t_list *node)
+{
+	int	max;
+
+	max = *(int *)node->content;
+	while (node)
 	{
-		argv = ft_split(argv[1], ' ');
-		ft_converter_t1(&a ,argv);
+		if (max < *(int *)node->content)
+			max = *(int *)node->content;
+		node = node->next;
 	}
-	ft_print(a);
-	ft_printf("\n");
-	ft_sort(&a);
-	ft_print(a);
+	return (max);
+}
+
+int	ft_index(t_list *node, int num)
+{
+	int	i;
+
+	i = 0;
+	while ((*(int *)node->content) != num)
+	{
+		i++;
+		node = node -> next;
+	}
+	return (i);
+}
+
+int	ft_sorted(t_list *node)
+{
+	int	num;
+
+	num = *(int *)node->content;
+	while (node)
+	{
+		if (num > *(int *)node->content)
+			return (0);
+		num = *(int *)node->content;
+		node = node->next;
+	}
+	return (1);
 }

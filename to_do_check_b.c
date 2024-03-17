@@ -12,24 +12,46 @@
 
 #include "push_swap.h"
 
-int main(int argn, char **argv)
+int	to_do_rr_b(t_list **a, t_list **b, int num)
 {
-	t_list	*a;
+	while (*(int *)(*b)->content != num && find_place_in_a(*a, num) > 0)
+		rr(a, b);
+	while (*(int *)(*b)->content != num)
+		rb(b);
+	while (find_place_in_a(*a, num))
+		ra(a);
+	pa(a, b);
+	return (-1);
+}
 
-	if (argn == 1)
-		return (0);
-	a = ft_list_init(argn, argv);
-	if (argn > 2)
-	{
-		ft_converter_t2(&a ,argv);
-	}
-	else
-	{
-		argv = ft_split(argv[1], ' ');
-		ft_converter_t1(&a ,argv);
-	}
-	ft_print(a);
-	ft_printf("\n");
-	ft_sort(&a);
-	ft_print(a);
+int	to_do_rrr_b(t_list **a, t_list **b, int num)
+{
+	while (*(int *)(*b)->content != num && find_place_in_a(*a, num) > 0)
+		rrr(a, b);
+	while (*(int *)(*b)->content != num)
+		rrb(b);
+	while (find_place_in_a(*a, num) > 0)
+		rra(a);
+	pa(a, b);
+	return (-1);
+}
+
+int	to_do_rb_rra_b(t_list **a, t_list **b, int num)
+{
+	while (*(int *)(*b)->content != num)
+		rb(b);
+	while (find_place_in_a(*a, num))
+		rra(a);
+	pa(a, b);
+	return (-1);
+}
+
+int	to_do_rrb_ra_b(t_list **a, t_list **b, int num)
+{
+	while (*(int *)(*b)->content != num)
+		rrb(b);
+	while (find_place_in_a(*a, num))
+		ra(a);
+	pa(a, b);
+	return (-1);
 }

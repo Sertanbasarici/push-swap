@@ -12,24 +12,61 @@
 
 #include "push_swap.h"
 
-int main(int argn, char **argv)
+int	find_place_in_a(t_list *a, int num)
 {
-	t_list	*a;
+	t_list	*temp;
+	int		i;
 
-	if (argn == 1)
-		return (0);
-	a = ft_list_init(argn, argv);
-	if (argn > 2)
-	{
-		ft_converter_t2(&a ,argv);
-	}
+	i = 1;
+	if (num > (*(int *)a->content) && (*(int *)(ft_lstlast(a)->content)) > num)
+		i = 0;
+	else if (num < ft_max(a) || num > ft_min(a))
+		i = ft_index(a, ft_max(a));
 	else
 	{
-		argv = ft_split(argv[1], ' ');
-		ft_converter_t1(&a ,argv);
+		temp = a->next;
+		while (num > *(int *)a->content || num < *(int *)temp->content)
+		{
+			a = a->next;
+			temp = temp->next;
+			i++;
+		}
 	}
-	ft_print(a);
-	ft_printf("\n");
-	ft_sort(&a);
-	ft_print(a);
+	return (i);
+}
+
+int	find_place_in_b(t_list *b, int num)
+{
+	t_list	*temp;
+	int		i;
+
+	i = 1;
+	if (num > *(int *)b->content && num < *(int *)ft_lstlast(b)-> content)
+		i = 0;
+	else if (num < ft_max(b) || num > ft_min(b))
+		i = ft_index(b, ft_max(b));
+	else
+	{
+		temp = b->next;
+		while (num > *(int *)b->content || num < *(int *)temp->content)
+		{
+			temp = temp->next;
+			b = b->next;
+			i++;
+		}
+	}
+	return (i);
+}
+
+int	ft_stack_size(t_list *node)
+{
+	int i;
+
+	i = 0;
+	while (node)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
 }

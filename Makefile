@@ -1,30 +1,23 @@
-NAME = push_swap.a
-SRCS = push_swap_control.c push_swap_util.c push_swap.c
+NAME = push_swap
+SRCS =control_check_a.c control_check_b.c push_swap_control.c push_swap_error.c push_swap_util_2.c push_swap_util_3.c push_swap_util.c push_swap.c sort.c to_do_check_a.c to_do_check_b.c
 OBJS = ${SRCS:.c=.o}
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -fr
+CFLAGS = -Wall -Wextra -Werror -Iincludes
+RM = rm -rf
 
+all: ${NAME} 
+${NAME}: ${OBJS}
+	@${MAKE} -C ./libft
+	@${MAKE} -C ./ft_printf
+	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a ./ft_printf/ft_printf.a -o ${NAME}
 
-all : $(NAME)
-
-$(NAME): $(OBJS)
-		$(MAKE) -C ./libft
-		$(MAKE) -C ./ft_printf
-		$(CC) $(CFLAGS) -c $(SRCS)
-		ar rc $(NAME) $(OBJS)
-		ranlib $(NAME)
-
-clean:
-	$(RM) $(OBJS)
-	$(MAKE) -C ./libft
-	$(MAKE) -C ./ft_printf
-
+clean: 
+	@${MAKE} -C ./libft fclean
+	@${MAKE} -C ./ft_printf fclean
+	@${RM} *.o
 
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) -C ./libft
-	$(MAKE) -C ./ft_printf
+	@${RM} ${NAME}
 
 re: fclean all
 

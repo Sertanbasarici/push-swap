@@ -18,7 +18,7 @@ int	to_do_rr_a(t_list **a, t_list **b, int num)
 		rr(a, b);
 	while (*(int *)(*a)->content != num)
 		ra(a);
-	while (find_place_in_b(*b, num))
+	while (find_place_in_b(*b, num) > 0)
 		rb(b);
 	pb(a, b);
 	return (-1);
@@ -28,7 +28,7 @@ int	to_do_rrr_a(t_list **a, t_list **b, int num)
 {
 	while (*(int *)(*a)->content != num && find_place_in_b(*b, num) > 0)
 		rrr(a, b);
-	while (*(int *)(*b)->content != num)
+	while (*(int *)(*a)->content != num)
 		rra(a);
 	while (find_place_in_b(*b, num) > 0)
 		rrb(b);
@@ -36,21 +36,21 @@ int	to_do_rrr_a(t_list **a, t_list **b, int num)
 	return (-1);
 }
 
-int	to_do_ra_rrb_b(t_list **a, t_list **b, int num)
+int	to_do_ra_rrb_a(t_list **a, t_list **b, int num)
 {
 	while (*(int *)(*a)->content != num)
-		ra(b);
-	while (find_place_in_b(*b, num))
-		rra(b);
+		ra(a);
+	while (find_place_in_b(*b, num) > 0)
+		rrb(b);
 	pb(a, b);
 	return (-1);
 }
 
-int	to_do_rra_rb_b(t_list **a, t_list **b, int num)
+int	to_do_rra_rb_a(t_list **a, t_list **b, int num)
 {
 	while (*(int *)(*a)->content != num)
 		rra(a);
-	while (find_place_in_b(*b, num))
+	while (find_place_in_b(*b, num) > 0)
 		rb(b);
 	pb(a, b);
 	return (-1);

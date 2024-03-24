@@ -21,7 +21,7 @@ int	ft_min(t_list *node)
 	{
 		if (min > *(int *)node->content)
 			min = *(int *)node->content;
-		node = node->next;	
+		node = node->next;
 	}
 	return (min);
 }
@@ -45,7 +45,7 @@ int	ft_index(t_list *node, int num)
 	int	i;
 
 	i = 0;
-	while ((*(int *)node->content) != num)
+	while (node != NULL && (*(int *)node->content) != num)
 	{
 		i++;
 		node = node -> next;
@@ -56,7 +56,6 @@ int	ft_index(t_list *node, int num)
 int	ft_sorted(t_list *node)
 {
 	int	num;
-
 	num = *(int *)node->content;
 	while (node)
 	{

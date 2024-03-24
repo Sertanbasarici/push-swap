@@ -12,14 +12,10 @@
 
 #include "push_swap.h"
 
-void	del(void * content)
-{
-	free(content);
-}
-
 void	ft_push(t_list **head, int data)
 {
-	t_list *new;
+	t_list	*new;
+
 	new = (t_list *)malloc(sizeof(t_list));
 	if (!head || !(*head) || !(new))
 		return ;
@@ -33,24 +29,9 @@ void	ft_push(t_list **head, int data)
 	*(int *)new -> content = data;
 }
 
-int	ft_pop(t_list **head)
-{
-	int data;
-	int *value;
-	value = malloc(sizeof(int));
-	if (!head || !(*head))
-		return (0);
-	while ((*head) -> next != NULL)
-		(*head) = (*head) -> next;
-	value = (int *)(*head)->content;
-	data = *value;
-	ft_lstdelone(*head, del);
-	return (data);
-}
-
 void	ft_print(t_list *node)
 {
-	t_list *iter;
+	t_list	*iter;
 
 	iter = (node);
 	while (iter != NULL)
@@ -78,6 +59,7 @@ t_list	*ft_list_init(int argn, char **argv)
 	if ( !(node) || !(node -> content))
 		return (NULL);
 	*(int *) node -> content = data;
+	node->next = NULL;
 	return (node);
 }
 
@@ -88,12 +70,13 @@ void	ft_converter_t1(t_list **a, char **ch)
 	int	num;
 
 	i = 1;
+	num = 0;
 	while (ch[i])
 	{
 		num = ft_atoi(ch[i]);
 		if (num == 0)
 			ft_numbercheck(ch[i]);
-		ft_error(a ,ch[i], num);
+		ft_error(a, ch[i], num);
 		ft_push(a, num);
 		i++;
 	}
@@ -114,7 +97,7 @@ void	ft_converter_t2(t_list **a, char **ch)
 		num = ft_atoi(ch[i]);
 		if (num == 0)
 			ft_numbercheck(ch[i]);
-		ft_error(a ,ch[i], num);
+		ft_error(a, ch[i], num);
 		ft_push(a, num);
 		i++;
 	}

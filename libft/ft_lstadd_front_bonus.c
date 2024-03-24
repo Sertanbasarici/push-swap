@@ -19,17 +19,3 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	new -> next = *lst;
 	*lst = new;
 }
-
-// #include <stdio.h>
-/*int main()
-{
-	t_list	*lst;
-	t_list	*new;
-	new = (t_list *)malloc(sizeof(t_list));
-	lst = (t_list *)malloc(sizeof(t_list));
-	new -> content = (void *)42;
-	lst -> content = (void *)43;
-	lst -> next = NULL;
-	ft_lstadd_front(&lst, new);
-	printf("%d ", (int)lst -> content);
-}*/

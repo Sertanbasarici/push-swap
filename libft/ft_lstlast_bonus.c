@@ -23,24 +23,3 @@ t_list	*ft_lstlast(t_list *lst)
 		tmp = tmp -> next;
 	return (tmp);
 }
-
-/*#include <stdio.h>
-int main()
-{
-	t_list *node;
-	t_list *node1;
-	t_list *node2;
-	t_list *node3;
-	node = (t_list *)malloc(sizeof(t_list));
-	node1 = (t_list *)malloc(sizeof(t_list));
-	node2 = (t_list *)malloc(sizeof(t_list));
-	node3 = (t_list *)malloc(sizeof(t_list));
-		node -> content = (void *)0;
-		node -> next = node1;
-		node1 -> content = (void *)10;
-		node1 -> next = node2;
-		node2 -> content = (void *)20;
-		node2 -> next = NULL;
-	node3 = ft_lstlast(node);
-	printf("%d ", (int)node3 -> content);
-}*/

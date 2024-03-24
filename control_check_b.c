@@ -17,7 +17,7 @@ int	ft_rr_cost_b(t_list *a, t_list *b, int num)
 	int	i;
 
 	i = find_place_in_b(b, num);
-	if(i < ft_index(a, num))
+	if (i < ft_index(a, num))
 		i = ft_index(a, num);
 	return (i);
 }
@@ -28,19 +28,9 @@ int	ft_rrr_cost_b(t_list *a, t_list *b, int num)
 
 	i = 0;
 	if (find_place_in_b(b, num))
-		i = ft_stack_size(b) - ft_index(b, num);
+		i = ft_stack_size(b) - find_place_in_b(b, num);
 	if ((i < ft_stack_size(a) - ft_index(a, num)) && ft_index(a, num))
 		i = ft_stack_size(a) - ft_index(a, num);
-	return (i);
-}
-
-int	ft_rb_rra_cost_b(t_list *a, t_list *b, int num)
-{
-	int	i;
-
-	i = find_place_in_b(b, num);
-	if (ft_index(a, num))
-		i += ft_stack_size(a) - ft_index(a, num);
 	return (i);
 }
 
@@ -50,15 +40,26 @@ int	ft_rrb_ra_cost_b(t_list *a, t_list *b, int num)
 
 	i = 0;
 	if (find_place_in_b(b, num))
-		i = ft_stack_size(b) - ft_index(b, num);
-	i += ft_index(a, num);
+		i = ft_stack_size(b) - find_place_in_b(b, num);
+	i = ft_index(a, num) + i;
 	return (i);
 }
 
-int	all_cost_b(t_list *a, t_list *b)
+int	ft_rb_rra_cost_b(t_list *a, t_list *b, int num)
 {
 	int	i;
-	t_list *temp;
+
+	i = 0;
+	if (ft_index(a, num))
+		i = ft_stack_size(a) - ft_index(a, num);
+	i = find_place_in_b(b, num) + i;
+	return (i);
+}
+
+int	cost_b(t_list *a, t_list *b)
+{
+	int		i;
+	t_list	*temp;
 
 	temp = a;
 	i = ft_rrr_cost_b(a, b, *(int *)temp->content);

@@ -15,21 +15,20 @@
 int main(int argn, char **argv)
 {
 	t_list	*a;
+	char	**str;
 
 	if (argn == 1)
 		return (0);
 	a = ft_list_init(argn, argv);
 	if (argn > 2)
-	{
 		ft_converter_t2(&a ,argv);
-	}
 	else
 	{
-		argv = ft_split(argv[1], ' ');
-		ft_converter_t1(&a ,argv);
+		str = ft_split(argv[1], ' ');
+		ft_converter_t1(&a ,str);
+		ft_free_split(str);
 	}
-	ft_print(a);
-	ft_printf("\n");
 	ft_sort(&a);
 	ft_print(a);
+	ft_free_each_one(a);
 }

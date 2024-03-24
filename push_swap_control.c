@@ -45,7 +45,7 @@ void	sb(t_list **b)
 
 void	ss(t_list **a, t_list **b)
 {
-	if (!(b) || !(*b) || !(a) || !(*a))
+	if (!(*b))
 		return ;
 	ft_swap(a);
 	ft_swap(b);
@@ -54,35 +54,42 @@ void	ss(t_list **a, t_list **b)
 
 void	pa(t_list **a, t_list **b)
 {
-	if (!a || !(*a) || !(b) || !(*b))
+	if (!(*a)) 
 		return ;
 	t_list	*tmp;
+	t_list	*tmp1;
+
+	tmp1 = (*b)->next;
 	tmp = (*b);
 	(*b) -> next = (*a);
 	(*a) = tmp;
+	(*b) = tmp1;
+	ft_printf("pa\n");
 }
 
-void	pb(t_list **b, t_list **a)
+void	pb(t_list **a, t_list **b)
 {
-	if (!(a) || !(*a) || !(b) || !(*b))
-	return ;
+	if (!(*a))
+		return ;
 	t_list	*tmp;
+	t_list	*tmp1;
 	tmp = (*a);
+	tmp1 = (*a)->next;
 	(*a) -> next = (*b);
 	(*b) = tmp;
+	(*a)= tmp1;
+	ft_printf("pb\n");
 }
 
 void	ft_rotate(t_list **node)
 {
-	if (!node || !(*node) || (ft_lstsize(*node) == 1))
-		return ;
 	t_list	*tmp;
 	t_list	*tmp1;
 	tmp = (*node);
 	tmp1 = (*node) -> next;
 	while ((*node) -> next != NULL)
 		(*node) = (*node) -> next;
-	tmp -> next = (*node) -> next;
+	tmp -> next = NULL;
 	(*node) -> next = tmp;
 	(*node) = tmp1;
 }
@@ -105,7 +112,7 @@ void	rb(t_list **b)
 
 void	rr(t_list **a, t_list **b)
 {
-	if (!(a) || !(*a) || (b) || (*b))
+	if (!(*a) || !(*b))
 		return ;
 	ft_rotate(a);
 	ft_rotate(b);

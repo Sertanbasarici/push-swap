@@ -12,39 +12,71 @@
 
 #include "push_swap.h"
 
-void	ft_alg(t_list **a, t_list **b)
+void	design_b(t_list **a, t_list **b)
 {
-	int	i;
+	int		i;
+	t_list	*temp;
 
 	while (ft_stack_size(*a) > 3 && !ft_sorted(*a))
 	{
-		i = all_cost_b(a, b);
+		temp = *a;
+		i = cost_b(*a, *b);
 		while (i >= 0)
 		{
-			if (i > ft_rr_cost_b(a, b, *(int *)(*a)->content))
-				i = to_do_rr_a(a, b, *(int *)(*a)->content);
-			else if (i > ft_rrr_cost_b(a, b, *(int *)(*a)->content))
-				i = to_do_rrr_a(a, b, *(int *)(*a)->content);
-			else if (i > ft_rb_rra_cost_b(a, b, *(int *)(*a)->content))
-				i = to_do_rb_rra_a(a, b, *(int *)(*a)->content);
-			else if (i > ft_rrb_ra_cost_b(a, b, *(int *)(*a)->content))
-				i = to_do_rrb_ra_a(a, b, *(int *)(*a)->content);
+			if (i == ft_rr_cost_b(*a, *b, *(int *)(temp)->content))
+				i = to_do_rr_a(a, b, *(int *)(temp)->content);
+			else if (i == ft_rrr_cost_b(*a, *b, *(int *)(temp)->content))
+				i = to_do_rrr_a(a, b, *(int *)(temp)->content);
+			else if (i == ft_rb_rra_cost_b(*a, *b, *(int *)(temp)->content))
+				i = to_do_rra_rb_a(a, b, *(int *)(temp)->content);
+			else if (i == ft_rrb_ra_cost_b(*a, *b, *(int *)(temp)->content))
+				i = to_do_ra_rrb_a(a, b, *(int *)(temp)->content);
 			else
-				(*a) = (*a)->next;
+				temp = temp->next;
 		}
 	}
 }
 
-void	*b_stack(t_list **a, t_list **b)
+t_list	**design_a(t_list **a, t_list **b)
 {
+	int		i;
+	t_list	*temp;
+
+	while (*b)
+	{
+		temp = *b;
+		i = cost_a(*a, *b);
+		while ((*b) != NULL && i >= 0)
+		{
+			if (i == ft_rr_cost_a(*a, *b, *(int *)(temp)->content))
+				i = to_do_rr_b(a, b, *(int *)(temp)->content);
+			else if (i == ft_rrr_cost_a(*a, *b, *(int *)(temp)->content))
+				i = to_do_rrr_b(a, b, *(int *)(temp)->content);
+			else if (i == ft_ra_rrb_cost_a(*a, *b, *(int *)(temp)->content))
+				i = to_do_rrb_ra_b(a, b, *(int *)(temp)->content);
+			else if (i == ft_rra_rb_cost_a(*a, *b, *(int *)(temp)->content))
+				i = to_do_rb_rra_b(a, b, *(int *)(temp)->content);
+			else
+				temp = temp -> next;
+		}
+	}
+	return (a);
+}
+
+t_list	*b_stack(t_list **a)
+{
+	t_list	*b;
+
+	b = NULL;
 	if (!ft_sorted(*a) || ft_stack_size(*a) > 3)
-		pb(a, b);
+		pb(a, &b);
 	if (!ft_sorted(*a) || ft_stack_size(*a) > 3)
-		pb(a, b);
+		pb(a, &b);
 	if (!ft_sorted(*a) || ft_stack_size(*a) > 3)
-		ft_alg(a, b);
+		design_b(a, &b);
 	if (!ft_sorted(*a))
 		ft_sort3(a);
+	return (b);
 }
 
 void	ft_sort3(t_list **a)
@@ -54,7 +86,8 @@ void	ft_sort3(t_list **a)
 	temp = *a;
 	while (!ft_sorted(*a))
 	{
-		if (*(int *)(*a)->content != ft_max(*a) && *(int *)(*a)->content != ft_min(*a))
+		if (*(int *)(*a)->content !=
+				ft_max(*a) && *(int *)(*a)->content != ft_min(*a))
 		{
 			temp = temp->next;
 			if (*(int *)(temp)->content == ft_max(*a))
@@ -78,15 +111,32 @@ void	ft_sort3(t_list **a)
 
 void	ft_sort(t_list **a)
 {
-	t_list *b;
+	t_list	*b;
+	int		i;
 
 	b = NULL;
 	if (ft_stack_size(*a) == 2 && !ft_sorted(*a))
 		sa(a);
-	else if (ft_stack_size((*a)) < 4)
-		ft_sort3(a);
 	else
 	{
-		b_stack(a, b);
+		b = b_stack(a);
+		a = design_a(a, &b);
+		i = ft_index(*a, ft_min(*a));
+		if (i <= ft_stack_size(*a) / 2)
+		{
+			while (i > 0)
+			{
+				ra(a);
+				i--;
+			}
+		}
+		else
+		{
+			while (i < ft_stack_size(*a))
+			{
+				rra(a);
+				i++;
+			}
+		}
 	}
 }

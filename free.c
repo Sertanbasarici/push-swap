@@ -1,31 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   push_swap_control.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 15:19:50 by sebasari          #+#    #+#             */
-/*   Updated: 2024/02/18 16:06:33 by sebasari         ###   ########.fr       */
+/*   Created: 2024/02/17 18:39:22 by sebasari          #+#    #+#             */
+/*   Updated: 2024/02/29 16:55:25 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	del(void *content)
 {
-	t_list	*tmp;
+	free(content);
+}
 
-	if (!lst || !new)
-		return ;
-	tmp = *lst;
-	if (!tmp)
-		tmp = new;
-	else
+void	ft_free_each_one(t_list *a)
+{
+	t_list	*temp;
+
+	temp = a;
+	while (temp != NULL)
 	{
-		while (tmp -> next != NULL)
-			tmp = tmp -> next;
-		new -> next = tmp -> next;
-		tmp -> next = new;
+		temp = a->next;
+		ft_lstdelone(a, del);
+		a = temp;
 	}
+}
+
+void	ft_free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

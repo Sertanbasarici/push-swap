@@ -18,7 +18,7 @@ int	to_do_rr_b(t_list **a, t_list **b, int num)
 		rr(a, b);
 	while (*(int *)(*b)->content != num)
 		rb(b);
-	while (find_place_in_a(*a, num))
+	while (find_place_in_a(*a, num) > 0)
 		ra(a);
 	pa(a, b);
 	return (-1);
@@ -38,20 +38,20 @@ int	to_do_rrr_b(t_list **a, t_list **b, int num)
 
 int	to_do_rb_rra_b(t_list **a, t_list **b, int num)
 {
+	while (find_place_in_a(*a, num) > 0)
+		rra(a);
 	while (*(int *)(*b)->content != num)
 		rb(b);
-	while (find_place_in_a(*a, num))
-		rra(a);
 	pa(a, b);
 	return (-1);
 }
 
 int	to_do_rrb_ra_b(t_list **a, t_list **b, int num)
 {
+	while (find_place_in_a(*a, num) > 0)
+		ra(a);
 	while (*(int *)(*b)->content != num)
 		rrb(b);
-	while (find_place_in_a(*a, num))
-		ra(a);
 	pa(a, b);
 	return (-1);
 }

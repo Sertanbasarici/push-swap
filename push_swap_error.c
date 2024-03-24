@@ -12,12 +12,11 @@
 
 #include "push_swap.h"
 
-
 long long	ft_atoi_extended(const char *str)
 {
-	int	i;
+	int			i;
 	long long	num;
-	long long	sign;
+	int			sign;
 
 	num = 0;
 	sign = 1;
@@ -43,8 +42,7 @@ long long	ft_atoi_extended(const char *str)
 void	ft_error(t_list **node, char *chr, int num)
 {
 	ft_exceed_check(chr);
-	ft_check_int(chr);
-	ft_diffromnum(chr);
+	ft_numbercheck(chr);
 	ft_duplicates_check(node, num);
 }
 
@@ -55,7 +53,7 @@ void	ft_error_print(void)
 }
 
 void	ft_exceed_check(char *chr)
-{	
+{
 	long long	num;
 
 	num = ft_atoi_extended(chr);
@@ -67,7 +65,7 @@ void	ft_exceed_check(char *chr)
 
 void	ft_duplicates_check(t_list **a, int num)
 {
-	t_list *iter;
+	t_list	*iter;
 
 	iter = (*a);
 	while (iter -> next != NULL)
@@ -75,42 +73,5 @@ void	ft_duplicates_check(t_list **a, int num)
 		if (*(int *)iter -> content == num)
 			ft_error_print();
 		iter = iter -> next;
-	}
-}
-
-void	ft_check_int(char *chr)
-{
-	int	i;
-
-	i = 0;
-	while (chr[i])
-	{					
-		if (chr[i] == '.')
-			ft_error_print();
-		i++;
-	}
-}
-
-void	ft_numbercheck(char *str)
-{
-	int i;
-
-	i = 0;
-	if (ft_isdigit(str[i]))
-		i++;
-	else
-		ft_error_print();
-}
-
-void	ft_diffromnum(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			ft_error_print();
-		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 17:30:37 by sebasari          #+#    #+#             */
-/*   Updated: 2023/10/27 15:03:28 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:14:10 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (0);
 	i = 0;
-	ret = malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
+	ret = malloc(sizeof(char *) * (ft_word_count(s, c)) + 1);
 	if (!ret)
 		return (0);
 	while (*s)

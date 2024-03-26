@@ -1,56 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:39:22 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/26 18:56:40 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:09:23 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	del(void *content)
+void	ft_swap(t_list **node)
 {
-	free(content);
+	t_list	*tmp;
+	t_list	*tmp1;
+	t_list	*tmp2;
+
+	if (!node || !(*node) || (ft_lstsize(*node) == 1))
+		return ;
+	tmp2 = (*node)->next->next;
+	tmp1 = (*node)->next;
+	tmp = (*node);
+	(*node)->next->next = tmp;
+	(*node)->next = tmp2;
+	*node = tmp1;
 }
 
-void	ft_free_each_one(t_list *a)
+void	sa(t_list **a)
 {
-	t_list	*temp;
-
-	temp = a;
-	while (temp != NULL)
-	{
-		temp = a->next;
-		ft_lstdelone(a, del);
-		a = temp;
-	}
+	if (!(a) || !(*a))
+		return ;
+	ft_swap(a);
+	ft_printf("sa\n");
 }
 
-void	ft_free_split(char **str)
+void	sb(t_list **b)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
+	if (!(b) || !(*b))
+		return ;
+	ft_swap(b);
+	ft_printf("sb\n");
 }
 
-void	ft_free_index(char **str)
+void	ss(t_list **a, t_list **b)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}	
+	if (!(*b))
+		return ;
+	ft_swap(a);
+	ft_swap(b);
+	ft_printf("ss\n");
 }

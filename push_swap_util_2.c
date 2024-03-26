@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_util_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:38:58 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/04 12:44:23 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:52:33 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	ft_index(t_list *node, int num)
 int	ft_sorted(t_list *node)
 {
 	int	num;
+
 	num = *(int *)node->content;
 	while (node)
 	{
@@ -75,17 +76,18 @@ char	**ft_rev(char **str)
 
 	i = ft_strlen_extended(str);
 	j = 0;
-	s1 = (char **)malloc(i * sizeof(char *) + 1);
+	s1 = (char **)malloc(i * sizeof(char *));
+	if (!s1)
+		return (NULL);
 	while (i > 0)
 	{
 		s1[j] = malloc((sizeof(char) * ft_strlen(str[i -1])));
-		ft_printf("%s", s1[j]);
 		if (!str[i - 1])
 			return (NULL);
 		s1[j] = str[i - 1];
 		i--;
 		j++;
-	}	
-	s1[j] = '\0';
+	}
+	s1[j] = NULL;
 	return (s1);
 }

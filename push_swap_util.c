@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:39:22 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/04 14:53:43 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:58:22 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,21 @@ void	ft_print(t_list *node)
 
 t_list	*ft_list_init(int argn, char **argv)
 {
-	t_list *node;
-	int	data;
-	char *str;
+	t_list	*node;
+	int		data;
 
-	str = *argv;
 	if (argn > 2)
-		data = ft_atoi(argv[ft_strlen(str) - 1]);
+		data = ft_atoi(argv[ft_strlen_extended(argv) - 1]);
 	else
-		data = ft_atoi(argv[ft_strlen(argv[1] - 1)]);
+		data = ft_atoi(argv[ft_strlen_extended(argv) - 1]);
 	node = malloc(sizeof(t_list));
 	node -> content = malloc(sizeof(int));
-	if ( !(node) || !(node -> content))
+	if (!(node) || !(node -> content))
 		return (NULL);
 	*(int *) node -> content = data;
 	node->next = NULL;
 	return (node);
 }
-
 
 void	ft_converter_t1(t_list **a, char **ch)
 {
@@ -69,6 +66,7 @@ void	ft_converter_t1(t_list **a, char **ch)
 	char	**str;
 
 	str = ft_rev(ch);
+	ft_free_split(ch);
 	i = 1;
 	num = 0;
 	while (str[i])
@@ -84,25 +82,33 @@ void	ft_converter_t1(t_list **a, char **ch)
 	if (num == 0)
 		ft_numbercheck(str[0]);
 	ft_error(a, str[0], num);
+	ft_free_index(str);
 }
 
 void	ft_converter_t2(t_list **a, char **ch)
 {
-	int	i;
-	int	num;
+	int		i;
+	int		num;
+	char	**str;
+	int		j;
 
-	i = 2;
-	while (ch[i])
+	j = 0;
+	str = ft_rev(ch);
+	j = ft_strlen_extended(str);
+	i = 1;
+	num = 0;
+	while (i < j - 1)
 	{
-		num = ft_atoi(ch[i]);
+		num = ft_atoi(str[i]);
 		if (num == 0)
-			ft_numbercheck(ch[i]);
-		ft_error(a, ch[i], num);
+			ft_numbercheck(str[i]);
+		ft_error(a, str[i], num);
 		ft_push(a, num);
 		i++;
 	}
-	num = ft_atoi(ch[1]);
+	num = ft_atoi(str[0]);
 	if (num == 0)
-		ft_numbercheck(ch[1]);
-	ft_error(a, ch[1], num);
+		ft_numbercheck(str[0]);
+	ft_error(a, str[0], num);
+	ft_free_index(str);
 }

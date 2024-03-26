@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:39:25 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/04 14:47:18 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:02:53 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		ft_push(t_list **head, int data);
 void		del(void *content);
 void		ft_free_each_one(t_list *a);
 void		ft_free_split(char **str);
+void		ft_free_index(char **str);
 void		ft_exceed_check(char	*chr);
 void		ft_error_print(void);
 void		ft_duplicates_check(t_list **a, int num);
@@ -47,6 +48,7 @@ int			find_place_in_b(t_list *b, int num);
 int			find_place_in_a(t_list *a, int num);
 int			ft_stack_size(t_list *node);
 int			ft_strlen_extended(char **str);
+
 // check_a
 int			ft_rr_cost_a(t_list *a, t_list *b, int num);
 int			ft_rrr_cost_a(t_list *a, t_list *b, int num);

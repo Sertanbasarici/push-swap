@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:38:58 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/04 12:44:23 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:13:57 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,10 @@ void	ft_sort3(t_list **a)
 	temp = *a;
 	while (!ft_sorted(*a))
 	{
-		if (*(int *)(*a)->content !=
-				ft_max(*a) && *(int *)(*a)->content != ft_min(*a))
+		if (ft_min(*a) == *(int *)(*a)->content)
 		{
-			temp = temp->next;
-			if (*(int *)(temp)->content == ft_max(*a))
-				rra(a);
-			else
-				sa(a);
+			rra(a);
+			sa(a);
 		}
 		else if (*(int *)(*a)->content == ft_max(*a))
 		{
@@ -103,8 +99,11 @@ void	ft_sort3(t_list **a)
 		}
 		else
 		{
-			sa(a);
-			ra(a);
+			temp = temp->next;
+			if (*(int *)(temp)->content == ft_max(*a))
+				rra(a);
+			else
+				sa(a);
 		}
 	}
 }
@@ -122,21 +121,15 @@ void	ft_sort(t_list **a)
 		b = b_stack(a);
 		a = design_a(a, &b);
 		i = ft_index(*a, ft_min(*a));
-		if (i <= ft_stack_size(*a) / 2)
+		if (i < ft_stack_size(*a) - i)
 		{
-			while (i > 0)
-			{
+			while (*(int *)(*a)->content != ft_min(*a))
 				ra(a);
-				i--;
-			}
 		}
 		else
 		{
-			while (i < ft_stack_size(*a))
-			{
+			while (*(int *)(*a)->content != ft_min(*a))
 				rra(a);
-				i++;
-			}
 		}
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_util_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:38:58 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/04 12:44:23 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:50:52 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	find_place_in_a(t_list *a, int num)
 int	ft_stack_size(t_list *node)
 {
 	int	i;
+
 	i = 0;
 	while (node)
 	{
@@ -89,7 +90,7 @@ void	ft_numbercheck(char *str)
 
 int	ft_strlen_extended(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

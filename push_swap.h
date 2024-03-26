@@ -18,8 +18,6 @@
 
 //	util_1
 t_list		*ft_list_init(int argn, char **argv);
-void		ft_converter_t1(t_list **a, char **ch);
-void		ft_converter_t2(t_list **a, char **ch);
 void		ft_push(t_list **head, int data);
 void		del(void *content);
 void		ft_free_each_one(t_list *a);
@@ -42,12 +40,13 @@ int			ft_min(t_list *node);
 int			ft_max(t_list *node);
 int			ft_index(t_list *node, int num);
 int			ft_sorted(t_list *node);
+char		**ft_rev(char **str);
 
 // util_3
 int			find_place_in_b(t_list *b, int num);
 int			find_place_in_a(t_list *a, int num);
 int			ft_stack_size(t_list *node);
-
+int			ft_strlen_extended(char **str);
 // check_a
 int			ft_rr_cost_a(t_list *a, t_list *b, int num);
 int			ft_rrr_cost_a(t_list *a, t_list *b, int num);

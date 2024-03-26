@@ -45,15 +45,13 @@ t_list	*ft_list_init(int argn, char **argv)
 {
 	t_list *node;
 	int	data;
+	char *str;
 
+	str = *argv;
 	if (argn > 2)
-	{
-		data = ft_atoi(argv[1]);
-	}
+		data = ft_atoi(argv[ft_strlen(str) - 1]);
 	else
-	{
-		data = ft_atoi(argv[1]);
-	}
+		data = ft_atoi(argv[ft_strlen(argv[1] - 1)]);
 	node = malloc(sizeof(t_list));
 	node -> content = malloc(sizeof(int));
 	if ( !(node) || !(node -> content))
@@ -66,24 +64,26 @@ t_list	*ft_list_init(int argn, char **argv)
 
 void	ft_converter_t1(t_list **a, char **ch)
 {
-	int	i;
-	int	num;
+	int		i;
+	int		num;
+	char	**str;
 
+	str = ft_rev(ch);
 	i = 1;
 	num = 0;
-	while (ch[i])
+	while (str[i])
 	{
-		num = ft_atoi(ch[i]);
+		num = ft_atoi(str[i]);
 		if (num == 0)
-			ft_numbercheck(ch[i]);
-		ft_error(a, ch[i], num);
+			ft_numbercheck(str[i]);
+		ft_error(a, str[i], num);
 		ft_push(a, num);
 		i++;
 	}
-	num = ft_atoi(ch[0]);
+	num = ft_atoi(str[0]);
 	if (num == 0)
-		ft_numbercheck(ch[0]);
-	ft_error(a, ch[0], num);
+		ft_numbercheck(str[0]);
+	ft_error(a, str[0], num);
 }
 
 void	ft_converter_t2(t_list **a, char **ch)

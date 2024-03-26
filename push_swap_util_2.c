@@ -66,3 +66,26 @@ int	ft_sorted(t_list *node)
 	}
 	return (1);
 }
+
+char	**ft_rev(char **str)
+{
+	char	**s1;
+	int		i;
+	int		j;
+
+	i = ft_strlen_extended(str);
+	j = 0;
+	s1 = (char **)malloc(i * sizeof(char *) + 1);
+	while (i > 0)
+	{
+		s1[j] = malloc((sizeof(char) * ft_strlen(str[i -1])));
+		ft_printf("%s", s1[j]);
+		if (!str[i - 1])
+			return (NULL);
+		s1[j] = str[i - 1];
+		i--;
+		j++;
+	}	
+	s1[j] = '\0';
+	return (s1);
+}

@@ -117,7 +117,7 @@ void	ft_sort(t_list **a)
 	b = NULL;
 	if (ft_stack_size(*a) == 2 && !ft_sorted(*a))
 		sa(a);
-	else
+	else if (!ft_sorted(*a))
 	{
 		b = b_stack(a);
 		a = design_a(a, &b);

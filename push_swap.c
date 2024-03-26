@@ -28,7 +28,7 @@ int main(int argn, char **argv)
 		ft_converter_t1(&a ,str);
 		ft_free_split(str);
 	}
-	ft_sort(&a);
 	ft_print(a);
+	ft_sort(&a);
 	ft_free_each_one(a);
 }

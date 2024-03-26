@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:38:58 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/26 17:52:33 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:53:31 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,4 @@ int	ft_sorted(t_list *node)
 		node = node->next;
 	}
 	return (1);
-}
-
-char	**ft_rev(char **str)
-{
-	char	**s1;
-	int		i;
-	int		j;
-
-	i = ft_strlen_extended(str);
-	j = 0;
-	s1 = (char **)malloc(i * sizeof(char *));
-	if (!s1)
-		return (NULL);
-	while (i > 0)
-	{
-		s1[j] = malloc((sizeof(char) * ft_strlen(str[i -1])));
-		if (!str[i - 1])
-			return (NULL);
-		s1[j] = str[i - 1];
-		i--;
-		j++;
-	}
-	s1[j] = NULL;
-	return (s1);
 }

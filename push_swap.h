@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:39:25 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/26 18:02:53 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:53:58 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,18 @@ void		ft_free_index(char **str);
 void		ft_exceed_check(char	*chr);
 void		ft_error_print(void);
 void		ft_duplicates_check(t_list **a, int num);
-void		ft_check_int(char *chr);
 void		ft_error(t_list **node, char *chr, int num);
 long long	ft_atoi_extended(const char *str);
 void		ft_print(t_list *node);
 void		ft_numbercheck(char *str);
 t_list		*ft_list_init(int argn, char **argv);
-void		ft_converter_t1(t_list **a, char **ch);
-void		ft_converter_t2(t_list **a, char **ch);
-void		ft_diffromnum(char *str);
+void		ft_converter_t1(t_list **a, char **ch, int j);
 
 // util_2
 int			ft_min(t_list *node);
 int			ft_max(t_list *node);
 int			ft_index(t_list *node, int num);
 int			ft_sorted(t_list *node);
-char		**ft_rev(char **str);
 
 // util_3
 int			find_place_in_b(t_list *b, int num);

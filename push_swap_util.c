@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:39:22 by sebasari          #+#    #+#             */
-/*   Updated: 2024/03/26 18:58:22 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:18:13 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,56 +59,24 @@ t_list	*ft_list_init(int argn, char **argv)
 	return (node);
 }
 
-void	ft_converter_t1(t_list **a, char **ch)
+void	ft_converter_t1(t_list **a, char **ch, int j)
 {
 	int		i;
 	int		num;
-	char	**str;
 
-	str = ft_rev(ch);
-	ft_free_split(ch);
-	i = 1;
+	i = ft_strlen_extended(ch) - 2;
 	num = 0;
-	while (str[i])
+	while (i >= j)
 	{
-		num = ft_atoi(str[i]);
+		num = ft_atoi(ch[i]);
 		if (num == 0)
-			ft_numbercheck(str[i]);
-		ft_error(a, str[i], num);
+			ft_numbercheck(ch[i]);
+		ft_error(a, ch[i], num);
 		ft_push(a, num);
-		i++;
+		i--;
 	}
-	num = ft_atoi(str[0]);
+	num = ft_atoi(ch[ft_strlen_extended(ch) - 1]);
 	if (num == 0)
-		ft_numbercheck(str[0]);
-	ft_error(a, str[0], num);
-	ft_free_index(str);
-}
-
-void	ft_converter_t2(t_list **a, char **ch)
-{
-	int		i;
-	int		num;
-	char	**str;
-	int		j;
-
-	j = 0;
-	str = ft_rev(ch);
-	j = ft_strlen_extended(str);
-	i = 1;
-	num = 0;
-	while (i < j - 1)
-	{
-		num = ft_atoi(str[i]);
-		if (num == 0)
-			ft_numbercheck(str[i]);
-		ft_error(a, str[i], num);
-		ft_push(a, num);
-		i++;
-	}
-	num = ft_atoi(str[0]);
-	if (num == 0)
-		ft_numbercheck(str[0]);
-	ft_error(a, str[0], num);
-	ft_free_index(str);
+		ft_numbercheck(ch[ft_strlen_extended(ch) - 1]);
+	ft_error(a, ch[ft_strlen_extended(ch) - 1], num);
 }
